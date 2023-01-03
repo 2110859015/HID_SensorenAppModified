@@ -1,0 +1,58 @@
+<div class="edit-pane" *ngIf="showEditDialogue">
+  <app-edit-sensors [sensorToEdit]="sensorToEdit" (showEditPane)="closeEditDialogue()"></app-edit-sensors>
+</div>
+
+<div class="container">
+  <h1> Sensors Overview </h1>
+  <br />
+
+  <table mat-table [dataSource]="storeService.sensors" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef class="sensor-cell">Id</th>
+      <td mat-cell *matCellDef="let sensor">{{ sensor.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef class="sensor-cell">Name</th>
+      <td mat-cell *matCellDef="let sensor">{{ sensor.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="location">
+      <th mat-header-cell *matHeaderCellDef class="sensor-cell">Location</th>
+      <td mat-cell *matCellDef="let sensor">{{ sensor.location }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef class="sensor-cell">Status</th>
+      <td mat-cell *matCellDef="let sensor">{{ sensor.status }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="sensorType">
+      <th mat-header-cell *matHeaderCellDef class="sensor-cell">Sensortype</th>
+      <td mat-cell *matCellDef="let sensor">{{ sensor.sensorType }}</td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef class="sensor-cell-special"> Edit</th>
+      <td mat-cell *matCellDef="let sensor">
+        <button mat-button color="primary" (click)="toggleEditPane(sensor.id)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef class="sensor-cell-special"> Delete</th>
+      <td mat-cell *matCellDef="let sensor">
+        <button mat-button color="primary" (click)="deleteSensor(sensor.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

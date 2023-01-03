@@ -1,0 +1,52 @@
+<div class="edit-pane" *ngIf="showEditDialogue">
+  <app-edit-sensors-data [msrmtToEdit]="msrmtToEdit" (showEditPane)="closeEditDialogue()"></app-edit-sensors-data>
+</div>
+
+<div class="container">
+  <h1>Measurements Overview</h1>
+  <br />
+  <table mat-table [dataSource]="storeService.measurements" class="mat-elevation-z8">
+    <ng-container matColumnDef="sensor">
+      <th mat-header-cell *matHeaderCellDef class="msrmt-cell">sensor</th>
+      <td mat-cell *matCellDef="let msrmt">
+        {{ msrmt.sensor.name }} <!-- msrmt.sensor.name -->
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="temperature">
+      <th mat-header-cell *matHeaderCellDef class="msrmt-cell">Temperature</th>
+      <td mat-cell *matCellDef="let msrmt">{{ msrmt.temperature }}°C</td>
+    </ng-container>
+
+    <ng-container matColumnDef="humidity">
+      <th mat-header-cell *matHeaderCellDef class="msrmt-cell">Humidity</th>
+      <td mat-cell *matCellDef="let msrmt">{{ msrmt.humidity }}%</td>
+    </ng-container>
+
+    <ng-container matColumnDef="dateTime">
+      <th mat-header-cell *matHeaderCellDef class="msrmt-cell">Date</th>
+      <td mat-cell *matCellDef="let msrmt">{{ msrmt.dateTime | date:'dd.MM.yyyy HH:mm:ss'}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef class="msrmt-cell-special"> Edit</th>
+      <td mat-cell *matCellDef="let msrmt" (click)="toggleEditPane(msrmt.id)">
+        <button mat-button color="primary">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef class="msrmt-cell-special"> Delete</th>
+      <td mat-cell *matCellDef="let msrmt">
+        <button mat-button color="primary" (click)="deleteMeasurement(msrmt.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

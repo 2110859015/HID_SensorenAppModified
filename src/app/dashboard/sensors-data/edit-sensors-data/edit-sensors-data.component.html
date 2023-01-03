@@ -1,0 +1,48 @@
+<div class="overlay">
+  <div class="center">
+    <h2>Edit Measurement</h2>
+    <br />
+    <form
+      [formGroup]="measurementForm"
+      (ngSubmit)="onSubmit()"
+      #formDirective="ngForm"
+    >
+      <!-- MEASUREMENT SENSOR -->
+      <mat-form-field appearance="fill">
+        <mat-label>Measurement sensor</mat-label>
+        <mat-select formControlName="sensorId">
+          <mat-option
+            *ngFor="let sensor of storeService.sensors"
+            [value]="sensor.id"
+            >{{ sensor.name }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+
+      <!-- MEASUREMENT DATETIME -->
+      <mat-form-field appearance="fill">
+        <mat-label>Measurement Datetime</mat-label>
+        <input type="datetime-local" matInput formControlName="dateTime" />
+      </mat-form-field>
+
+      <!-- MEASUREMENT TEMPERATURE -->
+      <mat-form-field appearance="fill">
+        <mat-label>Measurement temperature</mat-label>
+        <input type="number" matInput formControlName="temperature" />
+      </mat-form-field>
+
+      <!-- MEASUREMENT HUMIDITY -->
+      <mat-form-field appearance="fill">
+        <mat-label>Measurement humidity</mat-label>
+        <input type="number" matInput formControlName="humidity" />
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">
+        Edit measurement
+      </button>
+      <button mat-raised-button color="accent" (click)="closeEditPane()">
+        Cancel
+      </button>
+    </form>
+  </div>
+</div>

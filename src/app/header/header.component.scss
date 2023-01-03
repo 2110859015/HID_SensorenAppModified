@@ -1,0 +1,39 @@
+.flex-container {
+    display: flex;
+    align-items: center;
+    padding: 10px 30px 10px 30px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+h1 {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+img {
+    width: 40px;
+}
+
+.right-menu-section {
+    margin-left: auto;
+}
+
+a {
+    margin-right: 20px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+
+    &:hover {
+        color: #eeaff9;
+    }
+}
+
+.menu {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background-color: rgba(240, 230, 235);
+}

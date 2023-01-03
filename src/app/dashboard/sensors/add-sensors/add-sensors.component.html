@@ -1,0 +1,34 @@
+<div class="container">
+  <h2>Add Sensors</h2>
+  <br />
+  <form [formGroup]="sensorForm" (ngSubmit)="onSubmit()" #formDirective="ngForm">
+    <!-- SENSOR NAME -->
+    <mat-form-field appearance="fill">
+      <mat-label>Sensor name</mat-label>
+      <input matInput formControlName="name"/>
+    </mat-form-field>
+
+    <!-- SENSOR LOCATION -->
+    <mat-form-field appearance="fill">
+      <mat-label>Sensor location</mat-label>
+      <input matInput formControlName="location"/>
+    </mat-form-field>
+
+    <!-- SENSOR STATUS -->
+    <mat-form-field appearance="fill">
+      <mat-label>Sensor active</mat-label>
+      <mat-select formControlName="status">
+        <mat-option *ngFor="let item of sensorActive" [value]="item">{{item}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- SENSOR TYPE -->
+    <mat-form-field appearance="fill">
+      <mat-label>Sensor type</mat-label>
+      <mat-select formControlName="type">
+        <mat-option *ngFor="let type of sensorType" [value]="type">{{type}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Add sensor</button>
+  </form>
+</div>
